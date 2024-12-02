@@ -438,8 +438,7 @@ CREATE TABLE [Office_ADS]
  [Created_at] Datetime NOT NULL,
  [Updated_at] Datetime NOT NULL,
  [Deleted_at] Datetime NULL,
- [Adress] Char(100) NOT NULL,
- [ADS_Coordinates] Geometry NOT NULL
+ [Adress] Char(100) NOT NULL
 )
 go
 
