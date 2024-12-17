@@ -69,7 +69,7 @@ go
 
 -- Create indexes for table Office
 
-CREATE INDEX [IX_имеет] ON [Office] ([ID_Departament])
+CREATE INDEX [Relationship99] ON [Office] ([ID_Departament])
 go
 
 -- Add keys for table Office
@@ -118,7 +118,7 @@ go
 
 -- Create indexes for table Feedback
 
-CREATE INDEX [IX_Пишет_От] ON [Feedback] ([ID_Clients])
+CREATE INDEX [Relationship98] ON [Feedback] ([ID_Clients])
 go
 
 -- Add keys for table Feedback
@@ -313,7 +313,7 @@ CREATE TABLE [Vacations]
  [Remain] Int NOT NULL,
  [Used] Int NOT NULL,
  [Beginning_Vacations] Date NOT NULL,
- [End_Vacations] Dateti NOT NULL,
+ [End_Vacations] Date NOT NULL,
  [ID_Vacations] Int NOT NULL,
  [ID_Emloyee] Int NULL
 )
@@ -393,16 +393,16 @@ go
 -- Create foreign keys (relationships) section ------------------------------------------------- 
 
 
-ALTER TABLE [Method_connection] ADD CONSTRAINT [Содержит] FOREIGN KEY ([ID_Office]) REFERENCES [Office] ([ID_Office]) ON UPDATE NO ACTION ON DELETE NO ACTION
+ALTER TABLE [Method_connection] ADD CONSTRAINT [Relationship87] FOREIGN KEY ([ID_Office]) REFERENCES [Office] ([ID_Office]) ON UPDATE NO ACTION ON DELETE NO ACTION
 go
 
 
-ALTER TABLE [Office] ADD CONSTRAINT [имеет] FOREIGN KEY ([ID_Departament]) REFERENCES [Department] ([ID_Departament]) ON UPDATE NO ACTION ON DELETE NO ACTION
+ALTER TABLE [Office] ADD CONSTRAINT [Relationship99] FOREIGN KEY ([ID_Departament]) REFERENCES [Department] ([ID_Departament]) ON UPDATE NO ACTION ON DELETE NO ACTION
 go
 
 
 
-ALTER TABLE [Feedback] ADD CONSTRAINT [Пишет_От] FOREIGN KEY ([ID_Clients]) REFERENCES [Clients] ([ID_Clients]) ON UPDATE NO ACTION ON DELETE NO ACTION
+ALTER TABLE [Feedback] ADD CONSTRAINT [Relationship98] FOREIGN KEY ([ID_Clients]) REFERENCES [Clients] ([ID_Clients]) ON UPDATE NO ACTION ON DELETE NO ACTION
 go
 
 
