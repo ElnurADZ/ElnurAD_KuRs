@@ -1,12 +1,15 @@
 /*
 Created: 03.11.2024
-Modified: 04.11.2024
+Modified: 17.12.2024
 Model: Logical model
 Database: MS SQL Server 2019
 */
 
 
-
+CREATE DATABASE AUTOMA 
+GO
+use AUTOMA
+go
 -- Create tables section -------------------------------------------------
 
 -- Table Department
@@ -74,27 +77,6 @@ go
 ALTER TABLE [Office] ADD CONSTRAINT [Unique_Identifier3] PRIMARY KEY ([ID_Office])
 go
 
--- Table Company
-
-CREATE TABLE [Company]
-(
- [ID_Company] Int NOT NULL,
- [Created_at] Datetime NOT NULL,
- [Updated_at] Datetime NOT NULL,
- [Deleted_at] Datetime NULL,
- [Phone_number] Char(30) NOT NULL,
- [Email] Char(50) NOT NULL,
- [Name] Char(100) NULL,
- [Activity] Char(1000) NOT NULL,
- [Characteristic] Char(1000) NOT NULL
-)
-go
-
--- Add keys for table Company
-
-ALTER TABLE [Company] ADD CONSTRAINT [Unique_Identifier4] PRIMARY KEY ([ID_Company])
-go
-
 -- Table Employee
 
 CREATE TABLE [Employee]
@@ -117,33 +99,13 @@ go
 
 -- Add keys for table Employee
 
-ALTER TABLE [Employee] ADD CONSTRAINT [Unique_Identifier5] PRIMARY KEY ([ID_Emloyee])
-go
-
--- Table Payments
-
-CREATE TABLE [Payments]
-(
- [Created_at] Datetime NOT NULL,
- [Updated_at] Datetime NOT NULL,
- [Deleted_at] Datetime NULL,
- [Price] Money NOT NULL,
- [Paid] Bit NOT NULL,
- [Description] Char(1000) NOT NULL,
- [ID_Orders] Int NOT NULL
-)
-go
-
--- Add keys for table Payments
-
-ALTER TABLE [Payments] ADD CONSTRAINT [Unique_Identifier6] PRIMARY KEY ([ID_Orders])
+ALTER TABLE [Employee] ADD CONSTRAINT [Unique_Identifier4] PRIMARY KEY ([ID_Emloyee])
 go
 
 -- Table Feedback
 
 CREATE TABLE [Feedback]
 (
- [ID_Company] Int NULL,
  [ID_Clients] Int NULL,
  [ID_Feedback] Int NOT NULL,
  [Created_at] Datetime NOT NULL,
@@ -156,15 +118,12 @@ go
 
 -- Create indexes for table Feedback
 
-CREATE INDEX [IX_Пишет_ОТЗ] ON [Feedback] ([ID_Company])
-go
-
 CREATE INDEX [IX_Пишет_От] ON [Feedback] ([ID_Clients])
 go
 
 -- Add keys for table Feedback
 
-ALTER TABLE [Feedback] ADD CONSTRAINT [Unique_Identifier7] PRIMARY KEY ([ID_Feedback])
+ALTER TABLE [Feedback] ADD CONSTRAINT [Unique_Identifier5] PRIMARY KEY ([ID_Feedback])
 go
 
 -- Table Office_capital
@@ -174,8 +133,8 @@ CREATE TABLE [Office_capital]
  [Created_at] Datetime NOT NULL,
  [Updated_at] Datetime NOT NULL,
  [Deleted_at] Datetime NULL,
- [Old_Capital] Money NOT NULL,
- [New_capital] Money NOT NULL,
+ [Old_Capital] float NOT NULL,
+ [New_capital] float NOT NULL,
  [ID_Office_capital] Int NOT NULL,
  [ID_Office] Int NULL
 )
@@ -188,42 +147,7 @@ go
 
 -- Add keys for table Office_capital
 
-ALTER TABLE [Office_capital] ADD CONSTRAINT [Unique_Identifier8] PRIMARY KEY ([ID_Office_capital])
-go
-
--- Table Reports
-
-CREATE TABLE [Reports]
-(
- [ID_Orders] Int NOT NULL,
- [ID_Report] Int NOT NULL,
- [Created_at] Datetime NOT NULL,
- [Updated_at] Datetime NOT NULL,
- [Deleted_at] Datetime NULL,
- [Descripttion] Char(1000) NOT NULL,
- [ID_Office_capital] Int NULL,
- [ID_Feedback] Int NULL,
- [ID_Office] Int NULL
-)
-go
-
--- Create indexes for table Reports
-
-CREATE INDEX [IX_Relationship26] ON [Reports] ([ID_Orders])
-go
-
-CREATE INDEX [IX_Relationship28] ON [Reports] ([ID_Office_capital])
-go
-
-CREATE INDEX [IX_Relationship48] ON [Reports] ([ID_Feedback])
-go
-
-CREATE INDEX [IX_Relationship51] ON [Reports] ([ID_Office])
-go
-
--- Add keys for table Reports
-
-ALTER TABLE [Reports] ADD CONSTRAINT [Unique_Identifier9] PRIMARY KEY ([ID_Report])
+ALTER TABLE [Office_capital] ADD CONSTRAINT [Unique_Identifier6] PRIMARY KEY ([ID_Office_capital])
 go
 
 -- Table Method_connection
@@ -244,37 +168,7 @@ go
 
 -- Add keys for table Method_connection
 
-ALTER TABLE [Method_connection] ADD CONSTRAINT [Unique_Identifier10] PRIMARY KEY ([ID_Office])
-go
-
--- Table Orders
-
-CREATE TABLE [Orders]
-(
- [ID_Orders] Int NOT NULL,
- [ID_Office] Int NULL,
- [ID_Company] Int NOT NULL,
- [Created_at] Datetime NOT NULL,
- [Updated_at] Datetime NOT NULL,
- [Deleted_at] Datetime NULL,
- [Term] Date NOT NULL,
- [Text] Char(5000) NOT NULL,
- [Convenient_price] Money NOT NULL,
- [Wish] Char(1000) NULL
-)
-go
-
--- Create indexes for table Orders
-
-CREATE INDEX [IX_Relationship34] ON [Orders] ([ID_Office])
-go
-
-CREATE INDEX [IX_Relationship35] ON [Orders] ([ID_Company])
-go
-
--- Add keys for table Orders
-
-ALTER TABLE [Orders] ADD CONSTRAINT [Unique_Identifier11] PRIMARY KEY ([ID_Orders])
+ALTER TABLE [Method_connection] ADD CONSTRAINT [Unique_Identifier87] PRIMARY KEY ([ID_Office])
 go
 
 -- Table Order_Clients
@@ -284,13 +178,14 @@ CREATE TABLE [Order_Clients]
  [ID_Clients] Int NOT NULL,
  [ID_Office] Int NOT NULL,
  [ID_Order_Clients] Int NOT NULL,
- [Text] Char(5000) NOT NULL,
+ [Text] Char(1000) NOT NULL,
  [Term] Date NOT NULL,
  [Created_at] Datetime NOT NULL,
  [Updated_at] Datetime NOT NULL,
  [Deleted_at] Datetime NULL,
- [Convenient_price] Money NOT NULL,
- [wish] Char(100) NULL
+ [Convenient_price] float NOT NULL,
+ [Paid] Bit NULL,
+ [Wish] Char(100) NULL
 )
 go
 
@@ -304,7 +199,7 @@ go
 
 -- Add keys for table Order_Clients
 
-ALTER TABLE [Order_Clients] ADD CONSTRAINT [Unique_Identifier12] PRIMARY KEY ([ID_Order_Clients])
+ALTER TABLE [Order_Clients] ADD CONSTRAINT [Unique_Identifier7] PRIMARY KEY ([ID_Order_Clients])
 go
 
 -- Table Payments_Clients
@@ -314,16 +209,21 @@ CREATE TABLE [Payments_Clients]
  [Created_at] Datetime NOT NULL,
  [Updated_at] Datetime NOT NULL,
  [Deleted_at] Datetime NULL,
- [Price] Money NOT NULL,
- [Paid] Bit NOT NULL,
+ [Price] float NOT NULL,
  [Description] Char(1000) NOT NULL,
- [ID_Order_Clients] Int NOT NULL
+ [ID_Order_Clients] Int NOT NULL,
+ [ID_Clients] Int NOT NULL
 )
+go
+
+-- Create indexes for table Payments_Clients
+
+CREATE INDEX [IX_Relationship43] ON [Payments_Clients] ([ID_Order_Clients])
 go
 
 -- Add keys for table Payments_Clients
 
-ALTER TABLE [Payments_Clients] ADD CONSTRAINT [Unique_Identifier13] PRIMARY KEY ([ID_Order_Clients])
+ALTER TABLE [Payments_Clients] ADD CONSTRAINT [Unique_Identifier8] PRIMARY KEY ([ID_Order_Clients])
 go
 
 -- Table Report_Clients
@@ -336,7 +236,6 @@ CREATE TABLE [Report_Clients]
  [Created_at] Datetime NOT NULL,
  [Updated_at] Datetime NOT NULL,
  [Deleted_at] Datetime NULL,
- [Description] Datetime NOT NULL,
  [ID_Office_capital] Int NULL,
  [ID_Office] Int NULL
 )
@@ -358,7 +257,7 @@ go
 
 -- Add keys for table Report_Clients
 
-ALTER TABLE [Report_Clients] ADD CONSTRAINT [Unique_Identifier14] PRIMARY KEY ([ID_Report_Client])
+ALTER TABLE [Report_Clients] ADD CONSTRAINT [Unique_Identifier9] PRIMARY KEY ([ID_Report_Client])
 go
 
 -- Table ADS
@@ -375,7 +274,7 @@ go
 
 -- Add keys for table ADS
 
-ALTER TABLE [ADS] ADD CONSTRAINT [Unique_Identifier15] PRIMARY KEY ([ID_ADS])
+ALTER TABLE [ADS] ADD CONSTRAINT [Unique_Identifier50] PRIMARY KEY ([ID_ADS])
 go
 
 -- Table Salary
@@ -385,8 +284,9 @@ CREATE TABLE [Salary]
  [Created_at] Datetime NOT NULL,
  [Updated_at] Datetime NOT NULL,
  [Deleted_at] Datetime NULL,
- [Money] Money NOT NULL,
+ [Money] float NOT NULL,
  [Year] Int NOT NULL,
+ [Month] Int NOT NULL,
  [ID_Salary] Int NOT NULL,
  [ID_Emloyee] Int NULL
 )
@@ -399,7 +299,7 @@ go
 
 -- Add keys for table Salary
 
-ALTER TABLE [Salary] ADD CONSTRAINT [Unique_Identifier16] PRIMARY KEY ([ID_Salary])
+ALTER TABLE [Salary] ADD CONSTRAINT [Unique_Identifier60] PRIMARY KEY ([ID_Salary])
 go
 
 -- Table Vacations
@@ -412,8 +312,8 @@ CREATE TABLE [Vacations]
  [Year] Int NOT NULL,
  [Remain] Int NOT NULL,
  [Used] Int NOT NULL,
- [Beginning_Vacations] Datetime NOT NULL,
- [End_Vacations] Datetime NOT NULL,
+ [Beginning_Vacations] Date NOT NULL,
+ [End_Vacations] Dateti NOT NULL,
  [ID_Vacations] Int NOT NULL,
  [ID_Emloyee] Int NULL
 )
@@ -426,7 +326,7 @@ go
 
 -- Add keys for table Vacations
 
-ALTER TABLE [Vacations] ADD CONSTRAINT [Unique_Identifier17] PRIMARY KEY ([ID_Vacations])
+ALTER TABLE [Vacations] ADD CONSTRAINT [Unique_Identifier70] PRIMARY KEY ([ID_Vacations])
 go
 
 -- Table Office_ADS
@@ -439,8 +339,21 @@ CREATE TABLE [Office_ADS]
  [Updated_at] Datetime NOT NULL,
  [Deleted_at] Datetime NULL,
  [Adress] Char(100) NOT NULL,
- [ADS_Coordinates] Geometry NOT NULL
+ [ADS_Coordinates] Nvarchar(30) NULL,
+ [ID_ADS_Office] Int NOT NULL
 )
+go
+-- Add keys for table Office_ADS
+
+ALTER TABLE [Office_ADS] ADD CONSTRAINT [Unique_Identifier76] PRIMARY KEY ([ID_ADS_Office])
+go
+
+-- Create indexes for table Office_ADS
+
+CREATE INDEX [IX_Relationship30_Office] ON [Office_ADS] ([ID_Office])
+go
+
+CREATE INDEX [IX_Relationship30_ADS] ON [Office_ADS] ([ID_ADS])
 go
 
 -- Table Office/Partners
@@ -466,7 +379,7 @@ CREATE TABLE [Partners]
  [Created_at] Datetime NOT NULL,
  [Updated_at] Datetime NOT NULL,
  [Deleted_at] Datetime NULL,
- [phone_number] Char(30) NULL,
+ [Phone_number] Char(30) NULL,
  [Email] Char(50) NULL,
  [Company_activity] Char(1000) NULL
 )
@@ -484,12 +397,6 @@ ALTER TABLE [Method_connection] ADD CONSTRAINT [Содержит] FOREIGN KEY ([ID_Offic
 go
 
 
-
-ALTER TABLE [Feedback] ADD CONSTRAINT [Пишет_ОТЗ] FOREIGN KEY ([ID_Company]) REFERENCES [Company] ([ID_Company]) ON UPDATE NO ACTION ON DELETE NO ACTION
-go
-
-
-
 ALTER TABLE [Office] ADD CONSTRAINT [имеет] FOREIGN KEY ([ID_Departament]) REFERENCES [Department] ([ID_Departament]) ON UPDATE NO ACTION ON DELETE NO ACTION
 go
 
@@ -500,12 +407,12 @@ go
 
 
 
-ALTER TABLE [Reports] ADD CONSTRAINT [Relationship26] FOREIGN KEY ([ID_Orders]) REFERENCES [Orders] ([ID_Orders]) ON UPDATE NO ACTION ON DELETE NO ACTION
+ALTER TABLE [Office_ADS] ADD CONSTRAINT [Relationship74] FOREIGN KEY ([ID_ADS]) REFERENCES [ADS] ([ID_ADS]) ON UPDATE NO ACTION ON DELETE NO ACTION
 go
 
 
 
-ALTER TABLE [Reports] ADD CONSTRAINT [Relationship28] FOREIGN KEY ([ID_Office_capital]) REFERENCES [Office_capital] ([ID_Office_capital]) ON UPDATE NO ACTION ON DELETE NO ACTION
+ALTER TABLE [Office_ADS] ADD CONSTRAINT [Relationship76] FOREIGN KEY ([ID_Office]) REFERENCES [Office] ([ID_Office]) ON UPDATE NO ACTION ON DELETE NO ACTION
 go
 
 
@@ -516,16 +423,6 @@ go
 
 
 ALTER TABLE [Employee] ADD CONSTRAINT [Relationship33] FOREIGN KEY ([ID_Office]) REFERENCES [Office] ([ID_Office]) ON UPDATE NO ACTION ON DELETE NO ACTION
-go
-
-
-
-ALTER TABLE [Orders] ADD CONSTRAINT [Relationship34] FOREIGN KEY ([ID_Office]) REFERENCES [Office] ([ID_Office]) ON UPDATE NO ACTION ON DELETE NO ACTION
-go
-
-
-
-ALTER TABLE [Orders] ADD CONSTRAINT [Relationship35] FOREIGN KEY ([ID_Company]) REFERENCES [Company] ([ID_Company]) ON UPDATE NO ACTION ON DELETE NO ACTION
 go
 
 
@@ -560,11 +457,6 @@ go
 
 
 
-ALTER TABLE [Payments] ADD CONSTRAINT [Relationship44] FOREIGN KEY ([ID_Orders]) REFERENCES [Orders] ([ID_Orders]) ON UPDATE NO ACTION ON DELETE NO ACTION
-go
-
-
-
 ALTER TABLE [Vacations] ADD CONSTRAINT [Relationship45] FOREIGN KEY ([ID_Emloyee]) REFERENCES [Employee] ([ID_Emloyee]) ON UPDATE NO ACTION ON DELETE NO ACTION
 go
 
@@ -580,22 +472,12 @@ go
 
 
 
-ALTER TABLE [Reports] ADD CONSTRAINT [Relationship48] FOREIGN KEY ([ID_Feedback]) REFERENCES [Feedback] ([ID_Feedback]) ON UPDATE NO ACTION ON DELETE NO ACTION
-go
-
-
-
 ALTER TABLE [Report_Clients] ADD CONSTRAINT [Relationship49] FOREIGN KEY ([ID_Office_capital]) REFERENCES [Office_capital] ([ID_Office_capital]) ON UPDATE NO ACTION ON DELETE NO ACTION
 go
 
 
 
 ALTER TABLE [Report_Clients] ADD CONSTRAINT [Relationship50] FOREIGN KEY ([ID_Office]) REFERENCES [Office] ([ID_Office]) ON UPDATE NO ACTION ON DELETE NO ACTION
-go
-
-
-
-ALTER TABLE [Reports] ADD CONSTRAINT [Relationship51] FOREIGN KEY ([ID_Office]) REFERENCES [Office] ([ID_Office]) ON UPDATE NO ACTION ON DELETE NO ACTION
 go
 
 
