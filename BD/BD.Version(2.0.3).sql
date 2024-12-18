@@ -5,8 +5,6 @@ Model: Logical model
 Database: MS SQL Server 2019
 */
 
-Drop table [Department],[Clients],[Office],[Employee],[Feedback],[Office_capital],[Method_connection],[Order_Clients],[Payments_Clients],[Report_Clients],[dbo].[ADS],[dbo].[Office/Partners],[dbo].[Partners],[dbo].[Salary],
-[dbo].[Vacations],[dbo].[Office_ADS]
 CREATE DATABASE AUTOMA 
 GO
 use AUTOMA
