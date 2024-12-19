@@ -41,7 +41,8 @@ CREATE TABLE [Clients]
  [Created_at] Datetime default CURRENT_TIMESTAMP NOT NULL,
  [Updated_at] Datetime default CURRENT_TIMESTAMP NOT NULL,
  [Deleted_at] Datetime NULL,
- [blocked] Bit NULL
+ [Blocked] Bit NULL,
+ [Parol] nvarchar(20) not null
 )
 go
 
