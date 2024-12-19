@@ -16,8 +16,8 @@ namespace WEB_API
 
             // Add services to the container.
 
-            builder.Services.AddDbContext<AUTOMAContext>(options=> 
-            options.UseSqlServer("Server=DESKTOP-J59J9F0;Database=AUTOMA;User Id=sa;Password=12345;"));
+            builder.Services.AddDbContext<AUTOMAContext>(options=>
+            options.UseSqlServer(builder.Configuration["ConnectionString"]));
 
             builder.Services.AddScoped<IClientService, ClientService>();
             builder.Services.AddScoped<IRepositoryWrapper, RepositoryWrapper>();
@@ -27,6 +27,13 @@ namespace WEB_API
             builder.Services.AddSwaggerGen();
             var app = builder.Build();
 
+            using (var scope = app.Services.CreateScope())
+            {
+                var services = scope.ServiceProvider;
+
+                var context = services.GetRequiredService<AUTOMAContext>();
+                context.Database.Migrate();
+            }
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {

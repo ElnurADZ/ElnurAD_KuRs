@@ -7,7 +7,7 @@ namespace Domain.Models
     {
         public Partner()
         {
-            IdOffices = new HashSet<Office>();
+            OfficePartners = new HashSet<OfficePartner>();
         }
 
         public int IdPartners { get; set; }
@@ -19,6 +19,6 @@ namespace Domain.Models
         public string? Email { get; set; }
         public string? CompanyActivity { get; set; }
 
-        public virtual ICollection<Office> IdOffices { get; set; }
+        public virtual ICollection<OfficePartner> OfficePartners { get; set; }
     }
 }

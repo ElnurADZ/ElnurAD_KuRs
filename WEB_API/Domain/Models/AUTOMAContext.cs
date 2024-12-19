@@ -25,6 +25,7 @@ namespace Domain.Models
         public virtual DbSet<Office> Offices { get; set; } = null!;
         public virtual DbSet<OfficeAd> OfficeAds { get; set; } = null!;
         public virtual DbSet<OfficeCapital> OfficeCapitals { get; set; } = null!;
+        public virtual DbSet<OfficePartner> OfficePartners { get; set; } = null!;
         public virtual DbSet<OrderClient> OrderClients { get; set; } = null!;
         public virtual DbSet<Partner> Partners { get; set; } = null!;
         public virtual DbSet<PaymentsClient> PaymentsClients { get; set; } = null!;
@@ -32,6 +33,14 @@ namespace Domain.Models
         public virtual DbSet<Salary> Salaries { get; set; } = null!;
         public virtual DbSet<Vacation> Vacations { get; set; } = null!;
 
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+                optionsBuilder.UseSqlServer("Server= DESKTOP-J59J9F0;Database= AUTOMA;User Id= sa;Password= 12345;");
+            }
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -42,13 +51,12 @@ namespace Domain.Models
 
                 entity.ToTable("ADS");
 
-                entity.Property(e => e.IdAds)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID_ADS");
+                entity.Property(e => e.IdAds).HasColumnName("ID_ADS");
 
                 entity.Property(e => e.CreatedAt)
                     .HasColumnType("datetime")
-                    .HasColumnName("Created_at");
+                    .HasColumnName("Created_at")
+                    .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.DeletedAt)
                     .HasColumnType("datetime")
@@ -62,7 +70,8 @@ namespace Domain.Models
 
                 entity.Property(e => e.UpdatedAt)
                     .HasColumnType("datetime")
-                    .HasColumnName("Updated_at");
+                    .HasColumnName("Updated_at")
+                    .HasDefaultValueSql("(getdate())");
             });
 
             modelBuilder.Entity<Client>(entity =>
@@ -70,15 +79,14 @@ namespace Domain.Models
                 entity.HasKey(e => e.IdClients)
                     .HasName("Unique_Identifier2");
 
-                entity.Property(e => e.IdClients)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID_Clients");
+                entity.Property(e => e.IdClients).HasColumnName("ID_Clients");
 
                 entity.Property(e => e.Blocked).HasColumnName("blocked");
 
                 entity.Property(e => e.CreatedAt)
                     .HasColumnType("datetime")
-                    .HasColumnName("Created_at");
+                    .HasColumnName("Created_at")
+                    .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.DeletedAt)
                     .HasColumnType("datetime")
@@ -95,6 +103,8 @@ namespace Domain.Models
                     .HasColumnName("FIO")
                     .IsFixedLength();
 
+                entity.Property(e => e.Parol).HasMaxLength(20);
+
                 entity.Property(e => e.PhoneNumber)
                     .HasMaxLength(30)
                     .IsUnicode(false)
@@ -103,7 +113,8 @@ namespace Domain.Models
 
                 entity.Property(e => e.UpdatedAt)
                     .HasColumnType("datetime")
-                    .HasColumnName("Updated_at");
+                    .HasColumnName("Updated_at")
+                    .HasDefaultValueSql("(getdate())");
             });
 
             modelBuilder.Entity<Department>(entity =>
@@ -113,9 +124,7 @@ namespace Domain.Models
 
                 entity.ToTable("Department");
 
-                entity.Property(e => e.IdDepartament)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID_Departament");
+                entity.Property(e => e.IdDepartament).HasColumnName("ID_Departament");
 
                 entity.Property(e => e.Adress)
                     .HasMaxLength(100)
@@ -124,7 +133,8 @@ namespace Domain.Models
 
                 entity.Property(e => e.CreatedAt)
                     .HasColumnType("datetime")
-                    .HasColumnName("Created_at");
+                    .HasColumnName("Created_at")
+                    .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.DeletedAt)
                     .HasColumnType("datetime")
@@ -139,7 +149,8 @@ namespace Domain.Models
 
                 entity.Property(e => e.UpdatedAt)
                     .HasColumnType("datetime")
-                    .HasColumnName("Updated_at");
+                    .HasColumnName("Updated_at")
+                    .HasDefaultValueSql("(getdate())");
             });
 
             modelBuilder.Entity<Employee>(entity =>
@@ -151,13 +162,12 @@ namespace Domain.Models
 
                 entity.HasIndex(e => e.IdOffice, "IX_Relationship33");
 
-                entity.Property(e => e.IdEmloyee)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID_Emloyee");
+                entity.Property(e => e.IdEmloyee).HasColumnName("ID_Emloyee");
 
                 entity.Property(e => e.CreatedAt)
                     .HasColumnType("datetime")
-                    .HasColumnName("Created_at");
+                    .HasColumnName("Created_at")
+                    .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.DeletedAt)
                     .HasColumnType("datetime")
@@ -170,6 +180,8 @@ namespace Domain.Models
                     .IsFixedLength();
 
                 entity.Property(e => e.IdOffice).HasColumnName("ID_Office");
+
+                entity.Property(e => e.Parol).HasMaxLength(20);
 
                 entity.Property(e => e.PhoneNumber)
                     .HasMaxLength(30)
@@ -184,7 +196,8 @@ namespace Domain.Models
 
                 entity.Property(e => e.UpdatedAt)
                     .HasColumnType("datetime")
-                    .HasColumnName("Updated_at");
+                    .HasColumnName("Updated_at")
+                    .HasDefaultValueSql("(getdate())");
 
                 entity.HasOne(d => d.IdOfficeNavigation)
                     .WithMany(p => p.Employees)
@@ -202,13 +215,12 @@ namespace Domain.Models
 
                 entity.HasIndex(e => e.IdClients, "Relationship98");
 
-                entity.Property(e => e.IdFeedback)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID_Feedback");
+                entity.Property(e => e.IdFeedback).HasColumnName("ID_Feedback");
 
                 entity.Property(e => e.CreatedAt)
                     .HasColumnType("datetime")
-                    .HasColumnName("Created_at");
+                    .HasColumnName("Created_at")
+                    .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.DeletedAt)
                     .HasColumnType("datetime")
@@ -223,7 +235,8 @@ namespace Domain.Models
 
                 entity.Property(e => e.UpdatedAt)
                     .HasColumnType("datetime")
-                    .HasColumnName("Updated_at");
+                    .HasColumnName("Updated_at")
+                    .HasDefaultValueSql("(getdate())");
 
                 entity.HasOne(d => d.IdClientsNavigation)
                     .WithMany(p => p.Feedbacks)
@@ -244,7 +257,8 @@ namespace Domain.Models
 
                 entity.Property(e => e.CreatedAt)
                     .HasColumnType("datetime")
-                    .HasColumnName("Created_at");
+                    .HasColumnName("Created_at")
+                    .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.DeletedAt)
                     .HasColumnType("datetime")
@@ -273,7 +287,8 @@ namespace Domain.Models
 
                 entity.Property(e => e.UpdatedAt)
                     .HasColumnType("datetime")
-                    .HasColumnName("Updated_at");
+                    .HasColumnName("Updated_at")
+                    .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.Vk)
                     .HasMaxLength(100)
@@ -297,9 +312,7 @@ namespace Domain.Models
 
                 entity.HasIndex(e => e.IdDepartament, "Relationship99");
 
-                entity.Property(e => e.IdOffice)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID_Office");
+                entity.Property(e => e.IdOffice).HasColumnName("ID_Office");
 
                 entity.Property(e => e.Adress)
                     .HasMaxLength(100)
@@ -313,7 +326,8 @@ namespace Domain.Models
 
                 entity.Property(e => e.CreatedAt)
                     .HasColumnType("datetime")
-                    .HasColumnName("Created_at");
+                    .HasColumnName("Created_at")
+                    .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.DeletedAt)
                     .HasColumnType("datetime")
@@ -330,30 +344,14 @@ namespace Domain.Models
 
                 entity.Property(e => e.UpdatedAt)
                     .HasColumnType("datetime")
-                    .HasColumnName("Updated_at");
+                    .HasColumnName("Updated_at")
+                    .HasDefaultValueSql("(getdate())");
 
                 entity.HasOne(d => d.IdDepartamentNavigation)
                     .WithMany(p => p.Offices)
                     .HasForeignKey(d => d.IdDepartament)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("Relationship99");
-
-                entity.HasMany(d => d.IdPartners)
-                    .WithMany(p => p.IdOffices)
-                    .UsingEntity<Dictionary<string, object>>(
-                        "OfficePartner",
-                        l => l.HasOne<Partner>().WithMany().HasForeignKey("IdPartners").OnDelete(DeleteBehavior.ClientSetNull).HasConstraintName("Relationship41"),
-                        r => r.HasOne<Office>().WithMany().HasForeignKey("IdOffice").OnDelete(DeleteBehavior.ClientSetNull).HasConstraintName("Relationship40"),
-                        j =>
-                        {
-                            j.HasKey("IdOffice", "IdPartners");
-
-                            j.ToTable("Office/Partners");
-
-                            j.IndexerProperty<int>("IdOffice").HasColumnName("ID_Office");
-
-                            j.IndexerProperty<int>("IdPartners").HasColumnName("ID_Partners");
-                        });
             });
 
             modelBuilder.Entity<OfficeAd>(entity =>
@@ -367,9 +365,7 @@ namespace Domain.Models
 
                 entity.HasIndex(e => e.IdOffice, "IX_Relationship30_Office");
 
-                entity.Property(e => e.IdAdsOffice)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID_ADS_Office");
+                entity.Property(e => e.IdAdsOffice).HasColumnName("ID_ADS_Office");
 
                 entity.Property(e => e.Adress)
                     .HasMaxLength(100)
@@ -382,7 +378,8 @@ namespace Domain.Models
 
                 entity.Property(e => e.CreatedAt)
                     .HasColumnType("datetime")
-                    .HasColumnName("Created_at");
+                    .HasColumnName("Created_at")
+                    .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.DeletedAt)
                     .HasColumnType("datetime")
@@ -394,7 +391,8 @@ namespace Domain.Models
 
                 entity.Property(e => e.UpdatedAt)
                     .HasColumnType("datetime")
-                    .HasColumnName("Updated_at");
+                    .HasColumnName("Updated_at")
+                    .HasDefaultValueSql("(getdate())");
 
                 entity.HasOne(d => d.IdAdsNavigation)
                     .WithMany(p => p.OfficeAds)
@@ -418,13 +416,12 @@ namespace Domain.Models
 
                 entity.HasIndex(e => e.IdOffice, "IX_Relationship47");
 
-                entity.Property(e => e.IdOfficeCapital)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID_Office_capital");
+                entity.Property(e => e.IdOfficeCapital).HasColumnName("ID_Office_capital");
 
                 entity.Property(e => e.CreatedAt)
                     .HasColumnType("datetime")
-                    .HasColumnName("Created_at");
+                    .HasColumnName("Created_at")
+                    .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.DeletedAt)
                     .HasColumnType("datetime")
@@ -438,12 +435,50 @@ namespace Domain.Models
 
                 entity.Property(e => e.UpdatedAt)
                     .HasColumnType("datetime")
-                    .HasColumnName("Updated_at");
+                    .HasColumnName("Updated_at")
+                    .HasDefaultValueSql("(getdate())");
 
                 entity.HasOne(d => d.IdOfficeNavigation)
                     .WithMany(p => p.OfficeCapitals)
                     .HasForeignKey(d => d.IdOffice)
                     .HasConstraintName("Relationship47");
+            });
+
+            modelBuilder.Entity<OfficePartner>(entity =>
+            {
+                entity.HasKey(e => new { e.IdOffice, e.IdPartners });
+
+                entity.ToTable("Office/Partners");
+
+                entity.Property(e => e.IdOffice).HasColumnName("ID_Office");
+
+                entity.Property(e => e.IdPartners).HasColumnName("ID_Partners");
+
+                entity.Property(e => e.CreatedAt)
+                    .HasColumnType("datetime")
+                    .HasColumnName("Created_at")
+                    .HasDefaultValueSql("(getdate())");
+
+                entity.Property(e => e.DeletedAt)
+                    .HasColumnType("datetime")
+                    .HasColumnName("Deleted_at");
+
+                entity.Property(e => e.UpdatedAt)
+                    .HasColumnType("datetime")
+                    .HasColumnName("Updated_at")
+                    .HasDefaultValueSql("(getdate())");
+
+                entity.HasOne(d => d.IdOfficeNavigation)
+                    .WithMany(p => p.OfficePartners)
+                    .HasForeignKey(d => d.IdOffice)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("Relationship40");
+
+                entity.HasOne(d => d.IdPartnersNavigation)
+                    .WithMany(p => p.OfficePartners)
+                    .HasForeignKey(d => d.IdPartners)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("Relationship41");
             });
 
             modelBuilder.Entity<OrderClient>(entity =>
@@ -457,15 +492,14 @@ namespace Domain.Models
 
                 entity.HasIndex(e => e.IdOffice, "IX_Relationship37");
 
-                entity.Property(e => e.IdOrderClients)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID_Order_Clients");
+                entity.Property(e => e.IdOrderClients).HasColumnName("ID_Order_Clients");
 
                 entity.Property(e => e.ConvenientPrice).HasColumnName("Convenient_price");
 
                 entity.Property(e => e.CreatedAt)
                     .HasColumnType("datetime")
-                    .HasColumnName("Created_at");
+                    .HasColumnName("Created_at")
+                    .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.DeletedAt)
                     .HasColumnType("datetime")
@@ -484,7 +518,8 @@ namespace Domain.Models
 
                 entity.Property(e => e.UpdatedAt)
                     .HasColumnType("datetime")
-                    .HasColumnName("Updated_at");
+                    .HasColumnName("Updated_at")
+                    .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.Wish)
                     .HasMaxLength(100)
@@ -508,9 +543,7 @@ namespace Domain.Models
             {
                 entity.HasKey(e => e.IdPartners);
 
-                entity.Property(e => e.IdPartners)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID_Partners");
+                entity.Property(e => e.IdPartners).HasColumnName("ID_Partners");
 
                 entity.Property(e => e.CompanyActivity)
                     .HasMaxLength(1000)
@@ -520,7 +553,8 @@ namespace Domain.Models
 
                 entity.Property(e => e.CreatedAt)
                     .HasColumnType("datetime")
-                    .HasColumnName("Created_at");
+                    .HasColumnName("Created_at")
+                    .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.DeletedAt)
                     .HasColumnType("datetime")
@@ -545,7 +579,8 @@ namespace Domain.Models
 
                 entity.Property(e => e.UpdatedAt)
                     .HasColumnType("datetime")
-                    .HasColumnName("Updated_at");
+                    .HasColumnName("Updated_at")
+                    .HasDefaultValueSql("(getdate())");
             });
 
             modelBuilder.Entity<PaymentsClient>(entity =>
@@ -563,7 +598,8 @@ namespace Domain.Models
 
                 entity.Property(e => e.CreatedAt)
                     .HasColumnType("datetime")
-                    .HasColumnName("Created_at");
+                    .HasColumnName("Created_at")
+                    .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.DeletedAt)
                     .HasColumnType("datetime")
@@ -578,7 +614,8 @@ namespace Domain.Models
 
                 entity.Property(e => e.UpdatedAt)
                     .HasColumnType("datetime")
-                    .HasColumnName("Updated_at");
+                    .HasColumnName("Updated_at")
+                    .HasDefaultValueSql("(getdate())");
 
                 entity.HasOne(d => d.IdOrderClientsNavigation)
                     .WithOne(p => p.PaymentsClient)
@@ -602,13 +639,12 @@ namespace Domain.Models
 
                 entity.HasIndex(e => e.IdOffice, "IX_Relationship50");
 
-                entity.Property(e => e.IdReportClient)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID_Report_Client");
+                entity.Property(e => e.IdReportClient).HasColumnName("ID_Report_Client");
 
                 entity.Property(e => e.CreatedAt)
                     .HasColumnType("datetime")
-                    .HasColumnName("Created_at");
+                    .HasColumnName("Created_at")
+                    .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.DeletedAt)
                     .HasColumnType("datetime")
@@ -624,7 +660,8 @@ namespace Domain.Models
 
                 entity.Property(e => e.UpdatedAt)
                     .HasColumnType("datetime")
-                    .HasColumnName("Updated_at");
+                    .HasColumnName("Updated_at")
+                    .HasDefaultValueSql("(getdate())");
 
                 entity.HasOne(d => d.IdFeedbackNavigation)
                     .WithMany(p => p.ReportClients)
@@ -657,13 +694,12 @@ namespace Domain.Models
 
                 entity.HasIndex(e => e.IdEmloyee, "IX_Relationship46");
 
-                entity.Property(e => e.IdSalary)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID_Salary");
+                entity.Property(e => e.IdSalary).HasColumnName("ID_Salary");
 
                 entity.Property(e => e.CreatedAt)
                     .HasColumnType("datetime")
-                    .HasColumnName("Created_at");
+                    .HasColumnName("Created_at")
+                    .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.DeletedAt)
                     .HasColumnType("datetime")
@@ -673,7 +709,8 @@ namespace Domain.Models
 
                 entity.Property(e => e.UpdatedAt)
                     .HasColumnType("datetime")
-                    .HasColumnName("Updated_at");
+                    .HasColumnName("Updated_at")
+                    .HasDefaultValueSql("(getdate())");
 
                 entity.HasOne(d => d.IdEmloyeeNavigation)
                     .WithMany(p => p.Salaries)
@@ -688,9 +725,7 @@ namespace Domain.Models
 
                 entity.HasIndex(e => e.IdEmloyee, "IX_Relationship45");
 
-                entity.Property(e => e.IdVacations)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID_Vacations");
+                entity.Property(e => e.IdVacations).HasColumnName("ID_Vacations");
 
                 entity.Property(e => e.BeginningVacations)
                     .HasColumnType("date")
@@ -698,7 +733,8 @@ namespace Domain.Models
 
                 entity.Property(e => e.CreatedAt)
                     .HasColumnType("datetime")
-                    .HasColumnName("Created_at");
+                    .HasColumnName("Created_at")
+                    .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.DeletedAt)
                     .HasColumnType("datetime")
@@ -712,7 +748,8 @@ namespace Domain.Models
 
                 entity.Property(e => e.UpdatedAt)
                     .HasColumnType("datetime")
-                    .HasColumnName("Updated_at");
+                    .HasColumnName("Updated_at")
+                    .HasDefaultValueSql("(getdate())");
 
                 entity.HasOne(d => d.IdEmloyeeNavigation)
                     .WithMany(p => p.Vacations)

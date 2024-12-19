@@ -10,9 +10,9 @@ namespace Domain.Models
             Employees = new HashSet<Employee>();
             OfficeAds = new HashSet<OfficeAd>();
             OfficeCapitals = new HashSet<OfficeCapital>();
+            OfficePartners = new HashSet<OfficePartner>();
             OrderClients = new HashSet<OrderClient>();
             ReportClients = new HashSet<ReportClient>();
-            IdPartners = new HashSet<Partner>();
         }
 
         public int IdDepartament { get; set; }
@@ -30,9 +30,8 @@ namespace Domain.Models
         public virtual ICollection<Employee> Employees { get; set; }
         public virtual ICollection<OfficeAd> OfficeAds { get; set; }
         public virtual ICollection<OfficeCapital> OfficeCapitals { get; set; }
+        public virtual ICollection<OfficePartner> OfficePartners { get; set; }
         public virtual ICollection<OrderClient> OrderClients { get; set; }
         public virtual ICollection<ReportClient> ReportClients { get; set; }
-
-        public virtual ICollection<Partner> IdPartners { get; set; }
     }
 }

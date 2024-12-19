@@ -19,6 +19,7 @@ namespace Domain.Models
         public DateTime? DeletedAt { get; set; }
         public string Fio { get; set; } = null!;
         public string PhoneNumber { get; set; } = null!;
+        public string Parol { get; set; } = null!;
 
         public virtual Office IdOfficeNavigation { get; set; } = null!;
         public virtual ICollection<Salary> Salaries { get; set; }

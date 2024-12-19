@@ -19,6 +19,7 @@ namespace Domain.Models
         public DateTime UpdatedAt { get; set; }
         public DateTime? DeletedAt { get; set; }
         public bool? Blocked { get; set; }
+        public string Parol { get; set; } = null!;
 
         public virtual ICollection<Feedback> Feedbacks { get; set; }
         public virtual ICollection<OrderClient> OrderClients { get; set; }
