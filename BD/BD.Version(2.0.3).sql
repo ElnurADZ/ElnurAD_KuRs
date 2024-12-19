@@ -87,8 +87,9 @@ CREATE TABLE [Employee]
  [Updated_at] Datetime default CURRENT_TIMESTAMP NOT NULL,
  [Deleted_at] Datetime NULL,
  [FIO] Char(100) NOT NULL,
- [Phone_number] Char(30) NOT NULL
-)
+ [Phone_number] Char(30) NOT NULL,
+ [Parol] nvarchar(20) not null
+ )
 go
 
 -- Create indexes for table Employee
