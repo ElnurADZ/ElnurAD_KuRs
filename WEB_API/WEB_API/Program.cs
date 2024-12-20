@@ -34,6 +34,7 @@ namespace WEB_API
                 var context = services.GetRequiredService<AUTOMAContext>();
                 context.Database.Migrate();
             }
+
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {

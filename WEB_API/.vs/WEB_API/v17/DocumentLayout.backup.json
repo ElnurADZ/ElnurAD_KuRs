@@ -3,16 +3,24 @@
   "WorkspaceRootPath": "C:\\Users\\Pc\\ElnurAD_KuRs\\WEB_API\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{08CD67D0-4936-4DB8-A4BE-99AB7A48A432}|WEB_API\\WEB_API.csproj|c:\\users\\pc\\elnurad_kurs\\web_api\\web_api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{08CD67D0-4936-4DB8-A4BE-99AB7A48A432}|WEB_API\\WEB_API.csproj|solutionrelative:web_api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A796EEA2-4D84-418F-86AC-1BED8BB9A4AE}|Domain\\Domain.csproj|c:\\users\\pc\\elnurad_kurs\\web_api\\domain\\models\\automacontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A796EEA2-4D84-418F-86AC-1BED8BB9A4AE}|Domain\\Domain.csproj|solutionrelative:domain\\models\\automacontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{08CD67D0-4936-4DB8-A4BE-99AB7A48A432}|WEB_API\\WEB_API.csproj|c:\\users\\pc\\elnurad_kurs\\web_api\\web_api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{08CD67D0-4936-4DB8-A4BE-99AB7A48A432}|WEB_API\\WEB_API.csproj|solutionrelative:web_api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{08CD67D0-4936-4DB8-A4BE-99AB7A48A432}|WEB_API\\WEB_API.csproj|c:\\users\\pc\\elnurad_kurs\\web_api\\web_api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{08CD67D0-4936-4DB8-A4BE-99AB7A48A432}|WEB_API\\WEB_API.csproj|solutionrelative:web_api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{7D772F34-D0B8-4576-84D6-04E19CC8433C}|BusinessLogic\\BusinessLogic.csproj|c:\\users\\pc\\elnurad_kurs\\web_api\\businesslogic\\services\\clientservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{7D772F34-D0B8-4576-84D6-04E19CC8433C}|BusinessLogic\\BusinessLogic.csproj|solutionrelative:businesslogic\\services\\clientservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{08CD67D0-4936-4DB8-A4BE-99AB7A48A432}|WEB_API\\WEB_API.csproj|c:\\users\\pc\\elnurad_kurs\\web_api\\web_api\\weatherforecast.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{08CD67D0-4936-4DB8-A4BE-99AB7A48A432}|WEB_API\\WEB_API.csproj|solutionrelative:web_api\\weatherforecast.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{08CD67D0-4936-4DB8-A4BE-99AB7A48A432}|WEB_API\\WEB_API.csproj|c:\\users\\pc\\elnurad_kurs\\web_api\\web_api\\controllers\\weatherforecastcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -26,8 +34,33 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AUTOMAContext.cs",
+              "DocumentMoniker": "C:\\Users\\Pc\\ElnurAD_KuRs\\WEB_API\\Domain\\Models\\AUTOMAContext.cs",
+              "RelativeDocumentMoniker": "Domain\\Models\\AUTOMAContext.cs",
+              "ToolTip": "C:\\Users\\Pc\\ElnurAD_KuRs\\WEB_API\\Domain\\Models\\AUTOMAContext.cs",
+              "RelativeToolTip": "Domain\\Models\\AUTOMAContext.cs",
+              "ViewState": "AgIAABcAAAAAAAAAAAA8wCIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-19T22:26:38.245Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "WeatherForecast.cs",
+              "DocumentMoniker": "C:\\Users\\Pc\\ElnurAD_KuRs\\WEB_API\\WEB_API\\WeatherForecast.cs",
+              "RelativeDocumentMoniker": "WEB_API\\WeatherForecast.cs",
+              "ToolTip": "C:\\Users\\Pc\\ElnurAD_KuRs\\WEB_API\\WEB_API\\WeatherForecast.cs",
+              "RelativeToolTip": "WEB_API\\WeatherForecast.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-19T16:27:08.894Z"
+            },
             {
               "$type": "Document",
               "DocumentIndex": 1,
@@ -36,40 +69,37 @@
               "RelativeDocumentMoniker": "WEB_API\\appsettings.json",
               "ToolTip": "C:\\Users\\Pc\\ElnurAD_KuRs\\WEB_API\\WEB_API\\appsettings.json",
               "RelativeToolTip": "WEB_API\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAABCAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAeAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-12-19T13:38:32.289Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-19T13:38:32.289Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\Pc\\ElnurAD_KuRs\\WEB_API\\WEB_API\\Program.cs",
               "RelativeDocumentMoniker": "WEB_API\\Program.cs",
               "ToolTip": "C:\\Users\\Pc\\ElnurAD_KuRs\\WEB_API\\WEB_API\\Program.cs",
               "RelativeToolTip": "WEB_API\\Program.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAACgAAAAjAAAAAAAAAA==",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABMAAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-19T13:38:05.619Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-19T13:38:05.619Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "ClientService.cs",
               "DocumentMoniker": "C:\\Users\\Pc\\ElnurAD_KuRs\\WEB_API\\BusinessLogic\\Services\\ClientService.cs",
               "RelativeDocumentMoniker": "BusinessLogic\\Services\\ClientService.cs",
               "ToolTip": "C:\\Users\\Pc\\ElnurAD_KuRs\\WEB_API\\BusinessLogic\\Services\\ClientService.cs",
               "RelativeToolTip": "BusinessLogic\\Services\\ClientService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAvAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-19T13:37:53.353Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-19T13:37:53.353Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "WeatherForecastController.cs",
               "DocumentMoniker": "C:\\Users\\Pc\\ElnurAD_KuRs\\WEB_API\\WEB_API\\Controllers\\WeatherForecastController.cs",
               "RelativeDocumentMoniker": "WEB_API\\Controllers\\WeatherForecastController.cs",
@@ -77,8 +107,7 @@
               "RelativeToolTip": "WEB_API\\Controllers\\WeatherForecastController.cs",
               "ViewState": "AgIAAAYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-19T13:37:49.958Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-19T13:37:49.958Z"
             }
           ]
         }

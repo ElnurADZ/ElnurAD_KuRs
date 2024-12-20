@@ -2,22 +2,23 @@ version: '3.4'
 
 services:
    webapi:
-     image: ${DOCKER_REGISTRY-}webapi
+     image: webapi
      build:
         context: .
         dockerfile: ./Dockerfile
      environment:
-     - ASPNETCORE_URLS=http://+:5000
-     - ASPNETCORE_ENVIRONMENT=Development
-     - ConnectionString=Server=DESKTOP-J59J9F0;Database=AUTOMA;User Id=sa;Password=12345;MultipleActiveResultSets=true
+        - ASPNETCORE_URLS=http://+:5000
+        - ASPNETCORE_ENVIRONMENT=Development
+        - ConnectionString=Server=DESKTOP-J59J9F0; Database=AUTOMA; User=sa; Password=12345;MultipleActiveResultSets=true
      ports:
-     - "5000:5000"
+         - "5000:80"
      depends_on:
      - db
 
    db:
     image: "mcr.microsoft.com/mssql/server"
     environment:
-     - "sa_PASSWORD=12345"
-     - "ACCEPT_EULA=Y"
+     - SA_PASSWORD=12345
+     - ACCEPT_EULA=Y
     container_name: mssql
+    
