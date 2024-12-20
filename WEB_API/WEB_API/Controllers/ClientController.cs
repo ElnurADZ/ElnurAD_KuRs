@@ -25,6 +25,26 @@ namespace WEB_API.Controllers
         {
             return Ok(await _clientService.GetOne(id));
         }
+        /// <summary>
+        /// Создание нового пользователя
+        /// </summary>
+        /// <remarks>
+        /// Пример запроса:
+        ///
+        ///     POST /Todo
+        ///     {
+        ///        "login" : "A4Tech Bloody B188",
+        ///        "password" : "!Pa$$word123@",
+        ///        "firstname" : "Иван",
+        ///        "lastname" : "Иванов",
+        ///        "middlename" : "Иванович"
+        ///     }
+        ///
+        /// </remarks>
+        /// <param name="model">Пользователь</param>
+        /// <returns></returns>
+
+        // POST api/<UsersController>
 
         [HttpPost]
         public async Task<IActionResult> Add(Client user)
